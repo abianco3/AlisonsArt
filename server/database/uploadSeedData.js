@@ -3,6 +3,7 @@ const data = require('./dummyData.js');
 const users = data.users;
 const artworks = data.artworks;
 const auctions = data.auctions;
+const closedAuctions = data.closedAuctions;
 const bids = data.bids;
 
 var helpers = db.$config.pgp.helpers;
@@ -25,8 +26,11 @@ module.exports = function insertDummyData(db) {
                 (bidder_id, auction_id, bid_date, bid_price)\
                 VALUES \
                 ((SELECT id FROM users WHERE id = ${bidder_id}), (SELECT id FROM auctions WHERE id = ${auction_id}), ${bid_date}, ${bid_price})', bid));
-
-        return t.batch([].concat(userInserts, artWorkInserts, auctionInserts, bidInserts));
+        var closedAuctionsInserts = closedAuctions.map(closedAuction => t.none('INSERT INTO closed_auctions \
+                (auction_id, winner, payment_status)\
+                VALUES \
+                ((SELECT id FROM auctions WHERE id = ${auction_id}), (SELECT id FROM users WHERE id = ${winner}), ${payment_status})', closedAuction));
+        return t.batch([].concat(userInserts, artWorkInserts, auctionInserts, bidInserts, closedAuctionsInserts));
     })
         .then(() => {
             console.log('success seeding data');

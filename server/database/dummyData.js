@@ -236,13 +236,35 @@ const bids = [
 		auction_id: 3,
 		bid_date: '2017-04-10 11:27:07',
 		bid_price: 17000,
+	},
+	{
+		id: 5,
+		bidder_id: 1,
+		auction_id: 4,
+		bid_date: '2017-01-01 11:30:00',
+		bid_price: 10000
 	}
 
 ];
+
+const closedAuctions = [
+  {
+  	auction_id: 1,
+  	winner: 4,
+  	payment_status: 'unpaid'
+  },
+  {
+  	auction_id: 4,
+  	winner: 1,
+  	payment_status: 'unpaid'
+  }
+]
+
 
 module.exports = {
 	users,
 	artworks,
 	auctions,
-	bids
+	bids,
+	closedAuctions
 };

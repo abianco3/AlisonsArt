@@ -17,8 +17,31 @@ module.exports = {
     return db.query('select * from auctions where owner_id=$1', [userId]);
   },
   getUserBiddingAuctions(userId) {
-    return db.query('select * from auctions inner join\
-    bids on bids.auction_id = auctions.id where bids.bidder_id = $1', [userId]);
+    return db.tx((t) => {
+      // map each auction
+      const auctionQ = 'select auctions.* from auctions inner join\
+      bids on auctions.id = bids.auction_id AND bids.bidder_id = $1';
+      return t.map(auctionQ, [userId], (auction) => {
+        // check if it is closed
+        return t.one('SELECT * from closedAuctions where auction_id=$1', [auction.id])
+        .then((closed) => {
+          auction.closed = true;
+          if (closed.winner === userId.toString()) {
+            auction.won = true;
+            auction.payment_status = closed.payment_status;
+          } else {
+            auction.won = false;
+          }
+
+          return auction;
+        })
+        .catch(() => {
+          auction.closed = false;
+          return auction;
+        });
+      })
+      .then(t.batch);
+    });
   },
   getUserBids(userId) {
     return db.query('select * from bids where bidder_id=$1', [userId]);

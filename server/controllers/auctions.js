@@ -35,6 +35,17 @@ router.post('/', (req, res) => {
   });
 });
 
+router.post('/ongoing', (req, res) => {
+  const { user } = req.body;
+  model.getUserBiddingAuctions(user)
+  .then((auctions) => {
+    res.status(200).json(auctions);
+  })
+  .catch((err) => {
+    res.status(500).send(err);
+  });
+});
+
 router.get('/:auctionId', (req, res) => {
   model.getAuction(req.params.auctionId)
   .then((auctions) => {
