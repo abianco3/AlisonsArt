@@ -14,7 +14,7 @@ module.exports = function createSchemas(db) {
       first_name VARCHAR(30) NOT NULL,\
       last_name VARCHAR(30) NOT NULL,\
       type VARCHAR(30) NOT NULL DEFAULT user,\
-      address VARCHAR(50)\
+      address VARCHAR(50),\
     )');
     let artworks = t.query('CREATE TABLE IF NOT EXISTS artworks (\
       id SERIAL PRIMARY KEY NOT NULL,\
@@ -72,7 +72,10 @@ module.exports = function createSchemas(db) {
       profile TEXT NOT NULL,\
       fb_link VARCHAR,\
       twitter_link VARCHAR,\
-      inst_link VARCHAR)'
+      inst_link VARCHAR\
+      stripe_user_id VARCHAR(50) DEFAULT NULL,\
+      refresh_token VARCHAR(75) DEFAULT NULL\
+      )'
     );
     let notifications = t.query('CREATE TABLE IF NOT EXISTS notifications (\
       id SERIAL PRIMARY KEY NOT NULL,\

@@ -8,6 +8,12 @@
     },
     "DATABASE_URL": {
       "required": true
+    },
+    "STRIPE_CLIENT_ID": {
+      "required": true
+    },
+    "jwtSecret": {
+      "required": true
     }
   },
   "formation": {

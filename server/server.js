@@ -14,6 +14,8 @@ const artistHandler = require('./controllers/artist');
 const imageHandler = require('./controllers/imageUpload');
 const notificationHandler = require('./controllers/notification');
 const contactHandler = require('./controllers/contact');
+const stripeHandler = require('./controllers/stripe');
+
 const app = express();
 busboy.extend(app, {
   upload: true,
@@ -35,8 +37,9 @@ app.use('/home', homeHandler);
 app.use('/auth', loginSignupHandler);
 app.use('/user', userHandler);
 app.use('/artist', artistHandler);
-app.use('/images', imageHandler)
+app.use('/images', imageHandler);
 app.use('/notifications', notificationHandler);
 app.use('/contactus', contactHandler);
+app.use('/stripe', stripeHandler);
 
 module.exports = server;
