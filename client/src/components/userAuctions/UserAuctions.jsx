@@ -16,10 +16,9 @@ class UserAuctions extends Component {
     dispatch(userAuctions.fetchingUserAuctions(true));
     const headers = new Headers();
     headers.append('Content-Type', 'application/json');
+    headers.append('authorization', `Bearer ${localStorage.getItem('authToken')}`);
     fetch('/auctions/ongoing', {
-      method: 'POST',
-      headers: headers,
-      body: JSON.stringify({user: user.userId})
+      headers: headers
     })
     .then(response => {
       if (!response.ok) {
@@ -147,3 +146,4 @@ const mapStateToProps = (state) => {
 };
 
 export default connect(mapStateToProps)(UserAuctions);
+

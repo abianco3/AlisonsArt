@@ -67,7 +67,7 @@ class Auction extends Component {
             'Content-Type': 'application/json',
             'Authorization': `Bearer ${localStorage.getItem('authToken')}`
           }),
-          body: JSON.stringify({ bidPrice: bid.bid, user: user.userId })
+          body: JSON.stringify({ bidPrice: bid.bid })
         })
         .then((answer) => {
           if (!answer.ok) {

@@ -332,7 +332,7 @@ module.exports = {
         if (result.current_bid_id === null) {
           return t.one('update auctions SET current_bid_id = $1, \
             bid_counter = bid_counter + 1, current_bid = $3\
-            where id = $2 returning current_bid_id', [auctionObj.bid.id, auctionObj.auction_id, auctionObj.bid.bid_price]);
+            where id = $2 returning current_bid_id, current_bid', [auctionObj.bid.id, auctionObj.auction_id, auctionObj.bid.bid_price]);
         } else {
           return t.one('SELECT bids.bid_price, bids.id FROM bids INNER JOIN auctions ON \
             auctions.id=$1 AND bids.id=auctions.current_bid_id', [auctionObj.auction_id])

@@ -72,11 +72,10 @@ module.exports = function createSchemas(db) {
       profile TEXT NOT NULL,\
       fb_link VARCHAR,\
       twitter_link VARCHAR,\
-      inst_link VARCHAR\
+      inst_link VARCHAR,\
       stripe_user_id VARCHAR(50) DEFAULT NULL,\
       refresh_token VARCHAR(75) DEFAULT NULL\
-      )'
-    );
+      )');
     let notifications = t.query('CREATE TABLE IF NOT EXISTS notifications (\
       id SERIAL PRIMARY KEY NOT NULL,\
       owner_id BIGINT NOT NULL REFERENCES users(id),\

@@ -17,6 +17,7 @@ const authenticate = (req, res, next) => {
         });
       } else {
         //do something here
+        req.user = decoded;
         next();
       }
     });
