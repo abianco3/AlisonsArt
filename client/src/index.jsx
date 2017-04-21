@@ -22,7 +22,7 @@ import Events from './components/Events.jsx';
 import SignUp from './components/SignUp.jsx';
 import LogIn from './components/LogIn.jsx';
 import User from './components/User.jsx';
-import CreateAuction from './components/CreateAuction.jsx';
+import CreateAuctionContainer from './components/CreateAuctionContainer.jsx';
 import Notification from './components/Notification.jsx';
 import ContactUs from './components/ContactUs.jsx';
 import io from 'socket.io-client';
@@ -57,7 +57,7 @@ const Index = () => {
           <Route path="/login" component={LogIn} />
           <Route path="/signup" component={SignUp} />
           <Route path="/notification" component={Notification} />
-          <Route path="/createAuction" component={CreateAuction} />
+          <Route path="/createAuction" component={CreateAuctionContainer} />
         </Container>
       </Router>
     )
