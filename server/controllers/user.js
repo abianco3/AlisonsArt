@@ -29,10 +29,4 @@ router.post('/:userId/changePassword', authenticate, (req, res) => {
   });
 });
 
-router.post('/profile', authenticate, (req, res) => {
-  const profile = req.body.profile;
-  const userId = req.body.user.userId;
-  model.profile(userId, profile)
-});
-
 module.exports = router;
