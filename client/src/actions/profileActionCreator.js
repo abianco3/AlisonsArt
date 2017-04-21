@@ -7,7 +7,7 @@ export function postingProfile(bool) {
 
 export function postingErrored(bool, error) {
   return {
-    type: 'POSTING-ERRORED',
+    type: 'POSTING_ERRORED',
     hasErrored: bool,
     error: error
   };
