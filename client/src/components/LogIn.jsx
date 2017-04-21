@@ -36,7 +36,7 @@ class LogIn extends Component {
         throw Error('Log in post not ok!');
       }
 
-      dispatch(UserActions.logInSuccess(response.headers.get('x-username'), response.headers.get('x-userId')));
+      dispatch(UserActions.logInSuccess(response.headers.get('x-username'), response.headers.get('x-userId'), response.headers.get('x-type') === 'artist'));
       return response.json();
     }).then(data => {
       dispatch(UserActions.checkingInfo(false));

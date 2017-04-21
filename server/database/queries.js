@@ -193,7 +193,7 @@ module.exports = {
       (username, first_name, last_name, email, address, type, password)\
       values \
       (${username}, ${first_name}, ${last_name}, ${email}, ${address}, ${type}, ${password})\
-      returning id', userObj);
+      returning id, type', userObj);
   },
   createAuction(auctionObj) {
     /*

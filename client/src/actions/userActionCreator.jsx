@@ -1,9 +1,9 @@
-export function logInSuccess(username, userId, type) {
+export function logInSuccess(username, userId, bool) {
   return {
     type: 'LOG_IN_COMPLETE',
     username: username,
     userId: userId,
-    type: type
+    artist: bool
   };
 }
 

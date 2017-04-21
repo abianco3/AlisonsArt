@@ -1,7 +1,7 @@
 const initialState = {
   username: '',
   userId: null,
-  type: null,
+  artist: false,
   checkingInfo: false,
   error: null,
   loggedOut: true
@@ -20,12 +20,13 @@ const userReducer = (state = initialState, action) => {
         ...state,
         username: action.username,
         userId: action.userId,
+        artist: action.artist,
         loggedOut: false
       };
     case 'LOG_IN_ERROR':
       return {
         ...state,
-        error: action.error,
+        error: action.error
       };
     case 'LOG_OUT_COMPLETE':
       return {
