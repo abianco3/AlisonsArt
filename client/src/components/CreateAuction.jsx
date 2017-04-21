@@ -170,41 +170,69 @@ class CreateAuction extends React.Component {
   }
   
   render() {
-    let isArtist = false;
-    if (isArtist) {
-      return (
-        <Container>
-          <Form>
-            <Form.Group widths='equal'>
-              <Form.Input 
-                label='Piece name'
-                name='art_name' 
-                placeholder='ex: Starry Night'  
-                onChange={this.handleInputChange} 
-                value={this.state.art_name}
-                required
-              />
-              <Form.Input
-                label='Year'
-                name='age' 
-                placeholder='ex: 1911'
-                onChange={this.handleInputChange} 
-                value={this.state.age}
-                required
-              />
-            </Form.Group>
-            <Grid>
-              <Grid.Row columns={2}>
-                <Grid.Column>
-                  <Image src={this.state.preview_image} size='large'/>
-                </Grid.Column>
-                <Grid.Column width={8}>
-                  <input 
-                    type='file' 
-                    name='image' 
-                    accept='image/*' 
-                    id='imageToSend'
-                    onChange={this.handleImageCreate}
+    return (
+      <Container>
+        <Form>
+          <Form.Group widths='equal'>
+            <Form.Input 
+              label='Piece name'
+              name='art_name' 
+              placeholder='ex: Starry Night'
+              onChange={this.handleInputChange}
+              value={this.state.art_name}
+              required
+            />
+            <Form.Input
+              label='Year'
+              name='age' 
+              placeholder='ex: 1911'
+              onChange={this.handleInputChange}
+              value={this.state.age}
+              required
+            />
+          </Form.Group>
+          <Grid>
+            <Grid.Row columns={2}>
+              <Grid.Column>
+                <Image src={this.state.preview_image} size='large'/>
+              </Grid.Column>
+              <Grid.Column width={8}>
+                <input 
+                  type='file' 
+                  name='image' 
+                  accept='image/*' 
+                  id='imageToSend'
+                  onChange={this.handleImageCreate}
+                />
+                <Form.TextArea 
+                  label='Description'
+                  name='description'
+                  placeholder='Tell us about your piece...'
+                  onChange={this.handleInputChange}
+                  value={this.state.description}
+                />
+                <Form.Group>
+                  <label>Categories</label>
+                  <Form.Field 
+                    label='Painting'
+                    control='input' 
+                    type='checkbox' 
+                    value='painting' 
+                    onChange={this.handleCategoryChange}
+                  />
+                  <Form.Field 
+                    label='Photography'
+                    control='input' 
+                    type='checkbox' 
+                    value='photography' 
+                    onChange={this.handleCategoryChange}
+                  />
+                  <Form.Field 
+                    label='Sculpture'
+                    control='input' 
+                    type='checkbox' 
+                    value='sculpture' 
+                    onChange={this.handleCategoryChange}
                   />
                   <Form.TextArea 
                     label='Description'
@@ -213,98 +241,64 @@ class CreateAuction extends React.Component {
                     onChange={this.handleInputChange}
                     value={this.state.description}
                   />
-                  <Form.Group>
-                    <label>Categories</label>
-                    <Form.Field 
-                      label='Painting'
-                      control='input' 
-                      type='checkbox' 
-                      value='painting' 
-                      onChange={this.handleCategoryChange}
-                    />
-                    <Form.Field 
-                      label='Photography'
-                      control='input' 
-                      type='checkbox' 
-                      value='photography' 
-                      onChange={this.handleCategoryChange}
-                    />
-                    <Form.Field 
-                      label='Sculpture'
-                      control='input' 
-                      type='checkbox' 
-                      value='sculpture' 
-                      onChange={this.handleCategoryChange}
-                    />
-                    <Form.TextArea 
-                      label='Description'
-                      name='description'
-                      placeholder='Tell us about your piece...'
-                      onChange={this.handleInputChange}
-                      value={this.state.description}
-                    />
-                    <Form.Input 
-                      label='Height'
-                      name='height'
-                      placeholder='inches'
-                      onChange={this.handleInputChange}
-                      value={this.state.height}
-                    />
-                    <Form.Input 
-                      label='Width'
-                      name='width'
-                      placeholder='inches'
-                      onChange={this.handleInputChange}
-                      value={this.state.width}
-                    />
-                  </Form.Group>
-                </Grid.Column>
-              </Grid.Row>
-            </Grid>
-            <Form.Group widths='equal'>
-              <Form.Input 
-                label='Estimated value'
-                name='estimated_price' 
-                placeholder='USD'
-                onChange={this.handleInputChange} 
-                value={this.state.estimated_price}
-                required
-              />
-              <Form.Input 
-                label='Buyout price'
-                name='buyout_price'
-                placeholder='USD' 
-                onChange={this.handleInputChange} 
-                value={this.state.buyout_price}
-                required
-              />
-            </Form.Group>
-            <Form.Group widths='equal'>
-              <Form.Input 
-                label='Start date'
-                name='start_date'
-                placeholder='YYYY-MM-DD HH:MM:SS' 
-                onChange={this.handleInputChange} 
-                value={this.state.start_date}
-                required
-              />
-              <Form.Input 
-                label='End date'
-                name='end_date'
-                placeholder='YYYY-MM-DD HH:MM:SS' 
-                onChange={this.handleInputChange} 
-                value={this.state.end_date}
-                required
-              />
-            </Form.Group>
-            <Button onClick={(e) => this.handleSubmit(e)}>Submit Auction</Button>
-          </Form>
-          <Divider />
-        </Container>
-      );
-    }
-    return (
-      <a href="/stripe/connect">Connect With Stripe</a>
+                  <Form.Input 
+                    label='Height'
+                    name='height'
+                    placeholder='inches'
+                    onChange={this.handleInputChange}
+                    value={this.state.height}
+                  />
+                  <Form.Input 
+                    label='Width'
+                    name='width'
+                    placeholder='inches'
+                    onChange={this.handleInputChange}
+                    value={this.state.width}
+                  />
+                </Form.Group>
+              </Grid.Column>
+            </Grid.Row>
+          </Grid>
+          <Form.Group widths='equal'>
+            <Form.Input 
+              label='Estimated value'
+              name='estimated_price' 
+              placeholder='USD'
+              onChange={this.handleInputChange} 
+              value={this.state.estimated_price}
+              required
+            />
+            <Form.Input 
+              label='Buyout price'
+              name='buyout_price'
+              placeholder='USD' 
+              onChange={this.handleInputChange} 
+              value={this.state.buyout_price}
+              required
+            />
+          </Form.Group>
+          <Form.Group widths='equal'>
+            <Form.Input 
+              label='Start date'
+              name='start_date'
+              placeholder='YYYY-MM-DD HH:MM:SS' 
+              onChange={this.handleInputChange} 
+              value={this.state.start_date}
+              required
+            />
+            <Form.Input 
+              label='End date'
+              name='end_date'
+              placeholder='YYYY-MM-DD HH:MM:SS' 
+              onChange={this.handleInputChange} 
+              value={this.state.end_date}
+              required
+            />
+          </Form.Group>
+          <Button onClick={(e) => this.handleSubmit(e)}>Submit Auction</Button>
+        </Form>
+        <Divider />
+      </Container>
     );
   }
 }
@@ -313,6 +307,7 @@ const mapStateToProps = (state) => {
   return {
     username: state.user.username,
     userId: state.user.userId,
+    profile: state.profile
   };
 };
 
