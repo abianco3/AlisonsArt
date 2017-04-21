@@ -29,7 +29,7 @@ router.get('/:artistId', (req, res) => {
 router.post('/profile', authenticate, (req, res) => {
   const profile = req.body.profile;
   const artistId = req.user.userId;
-  model.profile(artistId, profile)
+  model.createUserProfile(artistId, profile)
   .then(() => {
     res.status(201).send('success');
   })
