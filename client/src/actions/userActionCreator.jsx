@@ -1,8 +1,9 @@
-export function logInSuccess(username, userId) {
+export function logInSuccess(username, userId, type) {
   return {
     type: 'LOG_IN_COMPLETE',
     username: username,
     userId: userId,
+    type: type
   };
 }
 
