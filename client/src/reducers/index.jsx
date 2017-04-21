@@ -8,6 +8,7 @@ import bidReducer from './bidReducer';
 import socketReducer from './socketReducer.jsx';
 import notificationReducer from './notificationReducer.jsx';
 import userAuctionsReducer from './userAuctionsReducer';
+import profileReducer from './profileReducer';
 
 const rootReducer = combineReducers({
   auctions: auctionsReducer,
@@ -17,7 +18,8 @@ const rootReducer = combineReducers({
   bid: bidReducer,
   socket: socketReducer,
   notifications: notificationReducer,
-  userAuctions: userAuctionsReducer
+  userAuctions: userAuctionsReducer,
+  profile: profileReducer
 });
 
 export default rootReducer;
