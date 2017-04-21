@@ -29,7 +29,7 @@ class Artist extends Component {
       }
 
       if (response.headers.get('x-username') && response.headers.get('x-userId')) {
-        dispatch(UserActions.logInSuccess(response.headers.get('x-username'), response.headers.get('x-userId'), response.headers.get('x-type')));
+        dispatch(UserActions.logInSuccess(response.headers.get('x-username'), response.headers.get('x-userId'), response.headers.get('x-type') === 'artist'));
       }
       return response.json();
     })

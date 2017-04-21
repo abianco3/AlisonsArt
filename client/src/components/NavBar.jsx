@@ -8,9 +8,9 @@ class NavBar extends Component {
   handleLogout() {
     let { dispatch } = this.props;
     localStorage.removeItem('authToken');
-    setTimeout(function() {
       dispatch(UserActions.logOut());
-    }, 1000);
+    // setTimeout(function() {
+    // }, 2000);
   }
   render() {
     let {username, userId} = this.props;

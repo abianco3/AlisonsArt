@@ -54,7 +54,7 @@ class SignUp extends Component {
           });
         }
 
-        dispatch(UserActions.logInSuccess(response.headers.get('x-username'), response.headers.get('x-userId')));
+        dispatch(UserActions.logInSuccess(response.headers.get('x-username'), response.headers.get('x-userId') === 'artist'));
         
         return response.json();
       }).then(data => {

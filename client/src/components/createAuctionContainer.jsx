@@ -1,19 +1,16 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import CreateAuction from './CreateAuction.jsx';
+import Connect from './connect.jsx';
 
-const CreateAuctionContainer = ({ artist, username, profile }) => {
+const CreateAuctionContainer = ({ artist, username, profile, history }) => {
   if (!username) {
     return (
       <h3>Please log-in before you create an auction</h3>
     );
-  } else if (profile.hasErrored) {
-    return (
-      <h3>Something went wrong, please try again later</h3>
-    );
   } else if (!artist) {
     return (
-      <a href="/stripe/connect">Connect With Stripe</a>
+      <Connect history={history}/>
     );
   } else {
     return (
