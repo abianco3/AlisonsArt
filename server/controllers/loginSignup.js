@@ -28,6 +28,7 @@ router.post('/login', (req, res) => {
         res.setHeader('x-username', username);
         res.setHeader('x-userId', response[0].id);
         res.setHeader('x-type', response[0].type);
+        res.cookie('jwt', authToken);
         res.status(201).send(JSON.stringify(authToken));
       } else {
         throw Error('Wrong password');
@@ -72,6 +73,7 @@ router.post('/signup', (req, res) => {
     res.setHeader('x-username', username);
     res.setHeader('x-userId', result[0].id);
     res.setHeader('x-type', result[0].type);
+    res.cookie('jwt', authToken);
     res.status(201).send(JSON.stringify(authToken));
   })
   .catch(err => {

@@ -27,14 +27,15 @@ router.get('/:artistId', (req, res) => {
 });
 
 router.post('/profile', authenticate, (req, res) => {
-  const profile = req.body.profile;
-  const artistId = req.user.userId;
-  model.createUserProfile(artistId, profile)
+  const profile = req.body;
+  profile.user_id = req.user.userId;
+  model.createArtistProfile(profile)
   .then(() => {
     res.status(201).send('success');
   })
   .catch((error) => {
-    res.status(403).send('Invalid User Credentials');
+    console.log(error);
+    res.status(401).send('Invalid User Credentials');
   });
 });
 

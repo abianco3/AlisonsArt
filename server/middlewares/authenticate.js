@@ -6,9 +6,11 @@ const authenticate = (req, res, next) => {
   let authToken;
   if (authorizationHeader) {
     authToken = authorizationHeader.split(' ')[1];
+  } else {
+    authToken = req.cookies.jwt;
   }
 
-  if(authToken) {
+  if (authToken) {
     //validate
     jwt.verify(authToken, process.env.jwtSecret, (err, decoded) => {
       if (err) {

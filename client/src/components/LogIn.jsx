@@ -26,6 +26,7 @@ class LogIn extends Component {
         'Authorization': `Bearer ${localStorage.getItem('authToken')}`
       },
       method: 'POST',
+      credentials: 'include',
       body: JSON.stringify({
         username: username, 
         password: password

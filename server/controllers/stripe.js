@@ -32,12 +32,17 @@ router.get('/connect/callback', (req, res) => {
       client_secret: process.env.STRIPE_CLIENT_SECRET
     } },
     (error, response, body) => {
-      const credentials = body;
       if (error) {
         res.send(error);
       }
-
-      res.send(body);
+      model.updateStripe(body, req.user.userId)
+      .then(() => {
+        res.redirect('/');
+      })
+      .catch((err) => {
+        console.log(err.message);
+        res.status(404).send('Stripe Error - account not connected');
+      });
     });
 });
 

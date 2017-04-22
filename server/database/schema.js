@@ -3,7 +3,7 @@ module.exports = function createSchemas(db) {
 
     let drop = t.query('DROP TABLE IF EXISTS\
       followers, artwork_attributes, attributes, messages,\
-      bids, auctions, artworks, users, closed_auctions, ended_auctions, notifications, profiles cascade \
+      bids, auctions, artworks, users, closed_auctions, ended_auctions, notifications, profiles CASCADE \
     ');
 
     let users = t.query('CREATE TABLE IF NOT EXISTS users (\
@@ -14,7 +14,7 @@ module.exports = function createSchemas(db) {
       first_name VARCHAR(30) NOT NULL,\
       last_name VARCHAR(30) NOT NULL,\
       type VARCHAR(30) NOT NULL DEFAULT user,\
-      address VARCHAR(50),\
+      address VARCHAR(50)\
     )');
     let artworks = t.query('CREATE TABLE IF NOT EXISTS artworks (\
       id SERIAL PRIMARY KEY NOT NULL,\
@@ -66,16 +66,16 @@ module.exports = function createSchemas(db) {
       follower_id BIGINT NOT NULL REFERENCES users(id),\
       followee_id BIGINT NOT NULL REFERENCES users(id)\
     )');
-    let profiles = t.query('CREATE TABLE IF NOT EXISTS profiles(\
+    let profiles = t.query('CREATE TABLE IF NOT EXISTS profiles (\
       id SERIAL PRIMARY KEY NOT NULL,\
       user_id BIGINT NOT NULL REFERENCES users(id),\
       profile TEXT NOT NULL,\
       fb_link VARCHAR,\
       twitter_link VARCHAR,\
       inst_link VARCHAR,\
-      stripe_user_id VARCHAR(50) DEFAULT NULL,\
-      refresh_token VARCHAR(75) DEFAULT NULL\
-      )');
+      stripe_user_id VARCHAR,\
+      refresh_token VARCHAR\
+    )');
     let notifications = t.query('CREATE TABLE IF NOT EXISTS notifications (\
       id SERIAL PRIMARY KEY NOT NULL,\
       owner_id BIGINT NOT NULL REFERENCES users(id),\
@@ -93,7 +93,7 @@ module.exports = function createSchemas(db) {
       payment_status status\
     )');
 
-    return t.batch([drop, users, artworks, auctions, bids, attributes, messages, artworkAttributes, followers, profiles, closedAuctions, notifications]);
+    return t.batch([drop, users, artworks, auctions, bids, attributes, messages, artworkAttributes, followers, profiles, notifications, closedAuctions]);
   })
   .then(() => {
     console.log('database tables created');

@@ -163,9 +163,14 @@ module.exports = {
     return db.any('SELECT auctions.id as auction_id, auctions.artwork_id, auctions.end_date, auctions.current_bid, Table1.image_url, Table1.art_name, Table1.estimated_price FROM auctions INNER JOIN (SELECT artworks.* FROM artworks INNER JOIN users ON (users.id=artworks.artist_id AND users.id=$1)) as Table1 ON auctions.artwork_id=Table1.id', [artist_id]);
   },
 
-  createArtistProfile(artist_id, profile) {
+  createArtistProfile(profile) {
     return db.none('INSERT INTO profiles (user_id, profile, fb_link, twitter_link, inst_link) \
-    VALUES (${user_id}, ${profile}, ${fb_link}, ${twitter}, ${inst_link})', profile);
+    VALUES (${user_id}, ${profile}, ${fb_link}, ${twitter_link}, ${inst_link})', profile);
+  },
+
+  updateStripe(stripeCreds, userId) {
+    return db.query('UPDATE profiles SET stripe_user_id = $1, refresh_token=$2 \
+      WHERE id=$3', [stripeCreds.stripe_user_id, stripeCreds.refresh_token, userId]);
   },
 
   getArtistProfile(artist_id) {

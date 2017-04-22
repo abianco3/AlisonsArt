@@ -12,7 +12,7 @@ var helpers = db.$config.pgp.helpers;
 
 var csUsers = new helpers.ColumnSet(['username', 'first_name', 'last_name', 'email', 'address', 'type', 'password'], {table: 'users'});
 var csArtWorks = new helpers.ColumnSet(['artist_id', 'age', 'estimated_price', 'art_name', 'description', 'dimensions', 'image_url'], {table: 'artworks'});
-var csAuctions = new helpers.ColumnSet(['owner_id', 'artwork_id', 'start_date','end_date', 'start_price', 'buyout_price', 'current_bid_id', 'current_bid', 'bid_counter'], {table: 'auctions'});
+var csAuctions = new helpers.ColumnSet(['owner_id', 'artwork_id', 'start_date', 'end_date', 'start_price', 'buyout_price', 'current_bid_id', 'current_bid', 'bid_counter'], {table: 'auctions'});
 var csBids = new helpers.ColumnSet(['bidder_id', 'auction_id', 'bid_date', 'bid_price'], {table: 'bids'});
 var csProfiles = new helpers.ColumnSet(['user_id', 'profile', 'fb_link', 'twitter_link', 'inst_link', 'stripe_user_id', 'refresh_token'], {table: 'profiles'});
 var csNotifications = new helpers.ColumnSet(['owner_id', 'trigger_id', 'type', 'text', 'read', 'date'], {table: 'notifications'});

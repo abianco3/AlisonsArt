@@ -69,7 +69,7 @@ const profiles = [
 
 //notifications:
 //******************************
-const notifications= [
+const notifications = [
 	{
 		id: 1,
 		owner_id: 2,
@@ -772,7 +772,7 @@ const bids = [
 		bidder_id: 4,
 		auction_id: 14,
 		bid_date: '2017-04-11 11:27:07',
-		bid_price: 18000,
+		bid_price: 18000
 	},
 ];
 

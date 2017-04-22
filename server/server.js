@@ -2,8 +2,8 @@ const path = require('path');
 const dotenv = require('dotenv');
 dotenv.config();
 const express = require('express');
-const bodyParser = require('body-parser');
 const busboy = require('express-busboy');
+const cookieParser = require('cookie-parser');
 const authenticate = require('./middlewares/authenticate');
 
 const recoverUserInfo = require('./middlewares/recoverUserInfo.js');
@@ -16,17 +16,16 @@ const imageHandler = require('./controllers/imageUpload');
 const notificationHandler = require('./controllers/notification');
 const contactHandler = require('./controllers/contact');
 const stripeHandler = require('./controllers/stripe');
+const port = process.env.PORT || 3000;
 
 const app = express();
+
 busboy.extend(app, {
   upload: true,
 });
 
-const port = process.env.PORT || 3000;
-const server = app.listen(port, function() {
-  console.log('Listening on port ', port);
-});
-const io = require('./sockets.js').init(server);
+app.use(cookieParser());
+
 app.set('etag', false);
 
 // app.use(bodyParser.urlencoded({extended: true}));
@@ -44,4 +43,11 @@ app.use('/notifications', notificationHandler);
 app.use('/contactus', contactHandler);
 app.use('/stripe', authenticate, stripeHandler);
 
+const server = app.listen(port, function() {
+  console.log('Listening on port ', port);
+});
+
+const io = require('./sockets.js').init(server);
+
 module.exports = server;
+

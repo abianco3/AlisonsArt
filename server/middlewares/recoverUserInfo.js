@@ -9,6 +9,8 @@ const recoverUserInfo = (req, res, next) => {
   let authToken;
   if (authorizationHeader) {
     authToken = authorizationHeader.split(' ')[1];
+  } else {
+    authToken = req.cookies.jwt;
   }
 
   if(authToken !== 'null') {
