@@ -5,7 +5,7 @@ const Moment = require('moment');
 const time = new Moment().format('YYYY-MM-DD HH:mm:ss');
 
 router.get('/', (req, res) => {
-  const queries = [model.getAuctions(3, time, '>'), model.getAuctions(3, time, '<'), model.featuredArt()];
+  const queries = [model.getAuctions(6, time, '>'), model.getAuctions(6, time, '<'), model.featuredArt()];
 
   Promise.all(queries)
   .then(fufilled => {
