@@ -152,6 +152,12 @@ class Auction extends Component {
     }
   }
 
+  clickArtist(artistId) {
+    const { history } = this.props;
+    history.push(`/artist/${artistId}`);
+    return false;
+  }
+
   render() {
 
     const { auction } = this.props.auction;
@@ -165,18 +171,28 @@ class Auction extends Component {
       const now = new Moment();
       if (end.isBefore(now)) {
         return (
-          <ClosedAuction flag={this.state.flag} user={user} auction={auction} handleSave={() => {this.handleSave(auction.id)}} handleUnsave={() => {
-            this.handleUnsave(auction.id)
-          }}/>
+          <ClosedAuction
+            flag={this.state.flag}
+            user={user}
+            auction={auction}
+            handleSave={() => { this.handleSave(auction.id); }}
+            handleUnsave={() => { this.handleUnsave(auction.id); }}
+            clickArtist={() => { this.clickArtist(auction.owner_id); }}
+          />
         );
       } else {
         return (
           <div>
-            <AuctionDetail flag={this.state.flag} user={user} handleClick={this.handleClick.bind(this, auction.id)} auction={auction} setBid={this.setBid.bind(this)} handleSave={() => {
-              this.handleSave(auction.id)
-            }} handleUnsave={() => {
-              this.handleUnsave(auction.id)
-            }}/> 
+            <AuctionDetail
+              flag={this.state.flag}
+              user={user}
+              handleClick={this.handleClick.bind(this, auction.id)}
+              auction={auction}
+              setBid={this.setBid.bind(this)}
+              handleSave={() => { this.handleSave(auction.id); }}
+              handleUnsave={() => { this.handleUnsave(auction.id); }}
+              clickArtist={() => { this.clickArtist(auction.owner_id); }}
+            />
           </div>
         );
       }

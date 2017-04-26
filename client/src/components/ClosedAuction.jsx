@@ -2,7 +2,7 @@ import React from 'react';
 import { Container, Image, Grid, Button } from 'semantic-ui-react';
 import Moment from 'moment';
 
-const ClosedAuction = ({ auction, handleSave, handleUnsave, user, flag }) => {
+const ClosedAuction = ({ auction, handleSave, handleUnsave, user, flag, clickArtist }) => {
 
   let endTime = new Moment(auction.end_date).format('MMMM Do, YYYY, h:mm:ss a');
   return (
@@ -20,7 +20,7 @@ const ClosedAuction = ({ auction, handleSave, handleUnsave, user, flag }) => {
             handleUnsave(auction.id)
           }}/> : null}
           <h2>{auction.artwork.art_name}</h2>
-          <h3>{auction.first_name} {auction.last_name} ({auction.artwork.age})</h3>
+          <h3><a onClick={clickArtist}>{auction.first_name} {auction.last_name} ({auction.artwork.age})</a></h3>
           <p><strong>Description:</strong> {auction.artwork.description}</p>
           <p><strong>Closing Price (USD):</strong> ${auction.current_bid}</p>
         </Container>

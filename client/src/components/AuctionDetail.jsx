@@ -3,7 +3,7 @@ import { Container, Image, Grid, Button, Form } from 'semantic-ui-react';
 import Moment from 'moment';
 import BiddingRange from './BiddingRange.jsx';
 
-const AuctionDetail = ({auction, setBid, handleClick, user, handleSave, handleUnsave, flag}) => {
+const AuctionDetail = ({auction, setBid, handleClick, user, handleSave, handleUnsave, flag, clickArtist}) => {
 
   let endTime = new Moment(auction.end_date).format('MMMM Do, YYYY, h:mm:ss a');
   return (
@@ -20,7 +20,7 @@ const AuctionDetail = ({auction, setBid, handleClick, user, handleSave, handleUn
           {user.username && flag ? <Button circular icon="empty heart" content="unsave" onClick={() => {
             handleUnsave(auction.id)
           }} /> : null}
-          <h3>{auction.first_name} {auction.last_name} ({auction.artwork.age})</h3>
+          <h3><a onClick={clickArtist}>{auction.first_name} {auction.last_name} ({auction.artwork.age})</a></h3>
           <p><strong>Auction Ends:</strong> {endTime}</p>
           <p><strong>Description:</strong> {auction.artwork.description}</p>
           <p><strong>Current Price (USD):</strong> ${auction.current_bid || auction.start_price}</p>
