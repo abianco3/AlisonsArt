@@ -12,22 +12,19 @@ import {
 import SaveFollow from './SaveFollow.jsx';
 import UserAuctions from './userAuctions/UserAuctions.jsx';
 import UserSettings from './UserSettings.jsx';
-import Payments from './Payments.jsx';
 import * as UserActions from '../actions/userActionCreator.jsx';
 
 const Navigation = (props) => {
   return (
     <Container>
-      <NavLink to={"/user/" + props.userId + '/savesFollows'}>Saves & Follows</NavLink>
+      <NavLink to={`/user/${props.userId}/savesFollows`}>Saves & Follows</NavLink>
       {'  '}
-      <NavLink to={"/user/" + props.userId + '/auctions'}>Auctions</NavLink>
+      <NavLink to={`/user/${props.userId}/auctions`}>Auctions</NavLink>
       {'  '}
-      <NavLink to={"/user/" + props.userId + '/settings'}>Settings</NavLink>
-      {'  '}
-      <NavLink to={"/user/" + props.userId + '/payments'}>Payments</NavLink>
+      <NavLink to={`/user/${props.userId}/settings`}>Settings</NavLink>
     </Container>
   );
-}
+};
 
 class User extends Component {
   componentWillMount() {
@@ -35,20 +32,19 @@ class User extends Component {
     fetch('/user', {
       method: 'GET',
       headers: {
-        'Authorization': `Bearer ${sessionStorage.getItem('authToken')}`
+        Authorization: `Bearer ${sessionStorage.getItem('authToken')}`
       }
     })
-    .then(response => {
-      if(!response.ok) {
+    .then((response) => {
+      if (!response.ok) {
         throw Error('authorization error');
       }
-      
       if (response.headers.get('x-username') && response.headers.get('x-userId')) {
         dispatch(UserActions.logInSuccess(response.headers.get('x-username'), response.headers.get('x-userId'), response.headers.get('x-type') === 'artist'));
       }
     })
-    .catch(err => {
-      //change the error name later
+    .catch((err) => {
+      // change the error name later
       alert(err.message);
     });
   }
@@ -69,7 +65,6 @@ class User extends Component {
                 <Route path="/user/:userId/savesFollows" component={SaveFollow} />
                 <Route path="/user/:userId/auctions" component={UserAuctions} />
                 <Route path="/user/:userId/settings" component={UserSettings} />
-                <Route path="/user/:userId/payments" component={Payments} />
               </Container>
             </Router>
           </Container>
@@ -77,12 +72,12 @@ class User extends Component {
       );
     }
   }
-};
+}
 
 const mapStateToProps = (state) => {
   return {
     user: state.user
-  }
-}
+  };
+};
 
 export default connect(mapStateToProps)(User);
