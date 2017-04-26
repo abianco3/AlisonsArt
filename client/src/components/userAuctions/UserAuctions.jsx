@@ -123,7 +123,10 @@ class UserAuctions extends Component {
         <Grid columns="equal">
           <Grid.Row columns={3}>
             {closedAuctions.length > 0 ? closedAuctions.map(auction => (
-              <ClosedAuction auction={auction} />
+              <ClosedAuction
+                auction={auction}
+                history={history}
+              />
               )
             ) : ''}
           </Grid.Row>
@@ -132,7 +135,10 @@ class UserAuctions extends Component {
         <Grid columns="equal">
           <Grid.Row>
             {openAuctions.length > 0 ? openAuctions.map(auction => (
-              <OpenAuction history={history} auction={auction} />
+              <OpenAuction
+                history={history}
+                auction={auction}
+              />
               )
             ) : ''}
           </Grid.Row>
