@@ -119,7 +119,7 @@ class Inbox extends React.Component {
                         <Grid.Column width={3}>
                           <strong>{conversation.first_name} {conversation.last_name} </strong>
                         </Grid.Column>
-                        <Grid.Column style={{'overflow': 'hidden'}}width={10}>
+                        <Grid.Column className='inboxMessage' width={10}>
                           "{conversation.text}"
                         </Grid.Column>
                         <Grid.Column width={3}>
@@ -142,7 +142,7 @@ class Inbox extends React.Component {
                         <Grid.Column width={3}>
                           <strong>{conversation.first_name} {conversation.last_name} </strong>
                         </Grid.Column> 
-                        <Grid.Column style={{'overflow': 'hidden'}} width={10}>
+                        <Grid.Column className='inboxMessage' width={10}>
                           "{conversation.text}"
                         </Grid.Column> 
                         <Grid.Column width={3}>
