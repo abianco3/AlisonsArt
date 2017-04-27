@@ -87,6 +87,22 @@ class Inbox extends React.Component {
         <h3>INBOX</h3>
           {
             this.props.inboxMessages.map(conversation => {
+              let splitDate = conversation.message_date.split('T')[0].split('-');
+              let months = {
+                '01': 'January',
+                '02': 'February',
+                '03': 'March',
+                '04': 'April',
+                '05': 'May',
+                '06': 'June',
+                '07': 'July',
+                '08': 'August',
+                '09': 'September',
+                '10': 'October',
+                '11': 'November',
+                '12': 'December',
+              }
+              let properDate = months[splitDate[1]] + ' ' + splitDate[2] + ', ' + splitDate[0];
               let fullName = conversation.first_name + ' ' + conversation.last_name;
               let senderId = conversation.sender_id;
               let receiverId = conversation.receiver_id;
@@ -100,14 +116,14 @@ class Inbox extends React.Component {
                   >
                     <Grid>
                       <Grid.Row>
-                        <Grid.Column width={2}>
+                        <Grid.Column width={3}>
                           <strong>{conversation.first_name} {conversation.last_name} </strong>
                         </Grid.Column>
-                        <Grid.Column width={10}>
+                        <Grid.Column style={{'overflow': 'hidden'}}width={10}>
                           "{conversation.text}"
                         </Grid.Column>
-                        <Grid.Column width={4}>
-                          <strong> at: {conversation.message_date}</strong>
+                        <Grid.Column width={3}>
+                          <strong>{properDate}</strong>
                         </Grid.Column>
                       </Grid.Row>
                     </Grid>
@@ -123,14 +139,14 @@ class Inbox extends React.Component {
                   >
                     <Grid>
                       <Grid.Row>
-                        <Grid.Column width={2}>
+                        <Grid.Column width={3}>
                           <strong>{conversation.first_name} {conversation.last_name} </strong>
                         </Grid.Column> 
-                        <Grid.Column width={10}>
+                        <Grid.Column style={{'overflow': 'hidden'}} width={10}>
                           "{conversation.text}"
                         </Grid.Column> 
-                        <Grid.Column width={4}>
-                          <strong> at: {conversation.message_date}</strong>
+                        <Grid.Column width={3}>
+                          <strong>{properDate}</strong>
                         </Grid.Column> 
                       </Grid.Row>
                     </Grid>

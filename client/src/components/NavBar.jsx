@@ -41,7 +41,7 @@ class NavBar extends Component {
 
     return (
       <span className='navbar'>
-        <h1> <Image avatar src='./assets/logo.jpeg' />ArtPoint</h1>
+        <h1> <Image avatar src='./assets/logo.png' />ArtPoint</h1>
         <span className='navBar'>
           {'  '}
           <NavLink className='navLinks' to="/home">Home</NavLink>

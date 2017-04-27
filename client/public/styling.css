@@ -202,11 +202,15 @@ a {
 .senderMessage {
   color: white;
   background-color: black;
+  padding: 5px;
+  border-radius: 5px;
 }
 
 .receiverMessage {
   color: black;
   background-color: white;
+  padding: 5px;
+  border-radius: 5px;
 }
 
 .closeChatButton {

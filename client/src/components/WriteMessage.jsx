@@ -114,6 +114,8 @@ class WriteMessage extends React.Component {
       return (
         <Segment className='miniChatBar' onClick={this.toggleMinimize}>
           <p><strong>{this.props.receiverName}</strong></p>
+          <p className='closeChatButton' onClick={this.closeChat}>X</p>
+          <div style={{float:"left", clear: "both"}} ref={(el) => {this.messagesEnd = el;}}></div>
         </Segment>
       )
     }

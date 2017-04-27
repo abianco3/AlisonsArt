@@ -102,11 +102,7 @@ class CreateAuction extends React.Component {
       current_bid_id: null,
       artwork: artwork,
     }
-    if (!this.state.userId) {
-      alert('you are not logged in, please sign up or log in');
-      history.push('/login');
-    } 
-    else if (!this.state.image_url 
+    if (!this.state.image_url 
       || !this.state.art_name 
       || !this.state.age 
       || !this.state.estimated_price 
@@ -133,12 +129,13 @@ class CreateAuction extends React.Component {
         return response.json();
       })
       .then((data) => {
-        alert('your auction was created successfully!');
-        // history.push('/auctions/' + data.id);
+        history.push('/auctions/');
       })
       .catch((error) => {
         console.log('auction failed to create: ', error);
-        alert('your auction failed to create! Please try again.');
+        this.setState({
+          isError: true
+        })
       })
     }
 

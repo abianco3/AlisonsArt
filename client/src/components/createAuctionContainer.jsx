@@ -14,7 +14,7 @@ const CreateAuctionContainer = ({ artist, username, profile, history }) => {
     );
   } else {
     return (
-      <CreateAuction />
+      <CreateAuction history={history}/>
     );
   }
 };

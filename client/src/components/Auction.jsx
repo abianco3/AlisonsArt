@@ -117,7 +117,6 @@ class Auction extends Component {
     //this is for invalid input:
     let temp = bid.bid;
     if(!user.username) {
-      alert('You are not logged in, please sign up or log in');
       history.push('/login');
     } else {
       if (!bid.bid){
