@@ -8,7 +8,7 @@ const initialState = {
 };
 
 const auctionsReducer = (state = initialState, action) => {
-  switch(action.type) {
+  switch (action.type) {
     case 'FETCH_AUCTION_ERROR':
       return {
         ...state,
@@ -38,6 +38,6 @@ const auctionsReducer = (state = initialState, action) => {
     default:
       return state;
   }
- };
- 
- export default auctionsReducer; 
+};
+
+export default auctionsReducer;

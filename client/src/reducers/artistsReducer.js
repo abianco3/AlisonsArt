@@ -1,4 +1,4 @@
-//this reducer is not added to the store yet
+// this reducer is not added to the store yet
 const initialState = {
   isFetching: false,
   fetchedArtists: [],
@@ -7,12 +7,12 @@ const initialState = {
 };
 
 const artistsReducer = (state = initialState, action) => {
-  switch(action.type) {
+  switch (action.type) {
     case 'FETCH_ARTISTS_ERROR':
       return {
         ...state,
-        fetchArtistsErrored: action.fetchArtistErrored,
-        fetchArtistsError: action.fetchArtistError
+        fetchArtistsErrored: action.fetchArtistsErrored,
+        fetchArtistsError: action.fetchArtistsError
       };
     case 'FETCHING_ARTISTS':
       return {
@@ -24,8 +24,10 @@ const artistsReducer = (state = initialState, action) => {
         ...state,
         fetchedArtists: action.artists
       };
+    default:
+      return state;
   }
-}
+};
 
 
 export default artistsReducer;

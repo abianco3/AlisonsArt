@@ -9,19 +9,21 @@ import socketReducer from './socketReducer.jsx';
 import notificationReducer from './notificationReducer.jsx';
 import userAuctionsReducer from './userAuctionsReducer';
 import profileReducer from './profileReducer';
-import chatReducer from './chatReducer.jsx'
+import chatReducer from './chatReducer.jsx';
+import artistsReducer from './artistsReducer';
 
 const rootReducer = combineReducers({
   auctions: auctionsReducer,
   auction: auctionReducer,
   artist: artistReducer,
+  artists: artistsReducer,
   user: userReducer,
   bid: bidReducer,
   socket: socketReducer,
   notifications: notificationReducer,
   userAuctions: userAuctionsReducer,
   profile: profileReducer,
-  chat: chatReducer,
+  chat: chatReducer
 });
 
 export default rootReducer;

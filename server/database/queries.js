@@ -16,6 +16,11 @@ module.exports = {
   getUsers() {
     return db.query('select * from users');
   },
+
+  getArtists(limit) {
+    return db.manyOrNone('SELECT profiles.image_url, profiles.profile, profiles.fb_link, profiles.twitter_link, profiles.inst_link, users.first_name, users.last_name, users.id FROM profiles INNER JOIN users ON profiles.user_id=users.id LIMIT $1', [limit]);
+  },
+
   getUserOwnedAuctions(userId) {
     return db.query('select * from auctions where owner_id=$1', [userId]);
   },

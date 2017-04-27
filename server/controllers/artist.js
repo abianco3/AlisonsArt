@@ -4,7 +4,16 @@ const authenticate = require('../middlewares/authenticate');
 
 //to get all artists: 
 router.get('/', (req, res) => {
-  res.status(200).send('recovered user info');
+  const { limit } = req.params || 20;
+  model.getArtists(limit)
+  .then((artists) => {
+    console.log(artists);
+    res.status(200).json(artists);
+  })
+  .catch((err) => {
+    console.log(err);
+    res.status(500).json({status: 500, message: 'internal server error'});
+  });
 });
 
 router.get('/:artistId', (req, res) => {
