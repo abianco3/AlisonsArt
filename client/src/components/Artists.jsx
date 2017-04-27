@@ -55,7 +55,7 @@ class Artists extends React.Component {
     if (isFetching) {
       return (
         <Message icon>
-          <Icon name='circle notched' loading />
+          <Icon name="circle notched" loading />
           <Message.Content>
             <Message.Header>Just a second!</Message.Header>
             Artists are on the way.
