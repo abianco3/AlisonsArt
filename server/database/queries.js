@@ -114,10 +114,13 @@ module.exports = {
     // (select auctions.id as auction_id, bids.bidder_id, auctions.end_date from auctions\
     // INNER JOIN bids ON auctions.current_bid_id=bids.id\
     // where auctions.end_date <= $1 and auctions.end_date > $2)) as w ORDER by w.end_date', [endDate, prevJob]);
-
     return db.query('select auctions.id as auction_id, bids.bidder_id as winner from auctions left outer join bids\
     on current_bid_id = bids.id where auctions.end_date <= $1 and auctions.end_date > $2\
-    order by auctions.end_date', [endDate, prevJob]);
+    except (select auction_id, winner from closed_auctions)', [endDate, prevJob]);
+
+    // return db.query('select auctions.id as auction_id, bids.bidder_id as winner from auctions left outer join bids\
+    // on current_bid_id = bids.id where auctions.end_date <= $1 and auctions.end_date > $2\
+    // order by auctions.end_date', [endDate, prevJob]);
   },
   getUserAuctions(userId) {
     return db.query('select id from (select id from auctions as auction_id\
@@ -416,7 +419,7 @@ module.exports = {
     } */
     return db.one('UPDATE notifications SET read=true where id=$1 and owner_id=$2 returning read', [id, owner_id]);
   },
-  updateAuction(auctionObj) {
+  updateAuction(auctionObj, time) {
     /*
     {
       auction_id:
@@ -437,13 +440,24 @@ module.exports = {
             // if the new bid is higher than the current champion
             if (parseInt(currentBid.bid_price) < parseInt(auctionObj.bid.bid_price)) {
               // set it to be the current_bid_id
-              return t.one('update auctions SET current_bid_id = $1, \
-                bid_counter = bid_counter + 1, current_bid = $3\
-                where id = $2 returning current_bid, current_bid_id, owner_id', [auctionObj.bid.id, auctionObj.auction_id, auctionObj.bid.bid_price])
-                .then((bid) => {
-                  bid.bidder_id = currentBid.bidder_id
-                  return bid;
-                });
+              if (parseInt(currentBid.bid_price) === parseInt(auctionObj.buyout_price)) {
+                return t.one('update auctions SET current_bid_id = $1, \
+                  bid_counter = bid_counter + 1, current_bid = $3, end_date=$4\
+                  where id = $2 returning current_bid, current_bid_id, owner_id', [auctionObj.bid.id, auctionObj.auction_id, auctionObj.bid.bid_price,time])
+                  .then((bid) => {
+                    bid.bidder_id = currentBid.bidder_id
+                    return bid;
+                  });
+              } else {
+                return t.one('update auctions SET current_bid_id = $1, \
+                  bid_counter = bid_counter + 1, current_bid = $3\
+                  where id = $2 returning current_bid, current_bid_id, owner_id', [auctionObj.bid.id, auctionObj.auction_id, auctionObj.bid.bid_price])
+                  .then((bid) => {
+                    bid.bidder_id = currentBid.bidder_id
+                    return bid;
+                  });
+              }
+
             } else {
               return currentBid;
             }
@@ -452,7 +466,9 @@ module.exports = {
       });
     });
   },
-
+  closeAuction(auctionId, time) {
+    return db.query('UPDATE auctions set end_date=$1 where auction_id=$2', [time, auctionId]);
+  },
   updatePaymentStatus(status, auctionId) {
     return db.query('UPDATE closed_auctions SET payment_status=$1 WHERE auction_id=$2', [status, auctionId]);
   }
