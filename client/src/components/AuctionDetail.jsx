@@ -46,7 +46,7 @@ const AuctionDetail = ({auction, bid, setBid, handleClick, user, handleSave, han
             <span>
               <p>
                 <strong className="blue-text">
-                  Next available bidding amount: {_formatMoney(+avail)}
+                  Next available bidding amount: ${_formatMoney(+avail)}
                 </strong>
               </p>
               <strong>

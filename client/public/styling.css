@@ -32,7 +32,7 @@ a {
   margin-bottom: 10px;
 }
 
-.thumbnails {
+.thumbnails, .teamphoto {
   position: relative;
   width: 280px;
   max-width: 100%;
@@ -41,6 +41,12 @@ a {
   background-position: 50% 50%;
   background-repeat: no-repeat;
   background-size: cover;
+}
+
+.teamphoto {
+  width: 350px;
+  height: 340px;
+  background-position: 20% 25%;
 }
 .profile {
   width: 180px;
@@ -57,6 +63,10 @@ a {
   color: black;
   font-size: 16px;
   margin-bottom: 5px;
+}
+
+.stripeButtonContainer {
+  margin-bottom: 10px;
 }
 
 .userFormWrapper {

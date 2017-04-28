@@ -219,7 +219,7 @@ class Artist extends Component {
                     </List.Item>
                     <List.Item>
                       <List.Content>
-                        {this.props.userId ? <Button id="messageButton" color="green" onClick={this.directMessageHandler} content="Message"/> : null}
+                        {userId && userId !== artistId ? <Button id="messageButton" color="green" onClick={this.directMessageHandler} content="Message"/> : null}
                       </List.Content>
                     </List.Item>
                     <List.Item>

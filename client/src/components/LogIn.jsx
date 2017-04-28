@@ -37,7 +37,7 @@ class LogIn extends Component {
         throw Error('Log in post not ok!');
       }
 
-      dispatch(UserActions.logInSuccess(response.headers.get('x-username'), response.headers.get('x-userId'), response.headers.get('x-type') === 'artist'));
+      dispatch(UserActions.logInSuccess(response.headers.get('x-username'), response.headers.get('x-userId'), response.headers.get('x-userEmail'), response.headers.get('x-type') === 'artist'));
       dispatch(SocketActions.loginSocket(response.headers.get('x-userId')));
       return response.json();
     }).then(data => {

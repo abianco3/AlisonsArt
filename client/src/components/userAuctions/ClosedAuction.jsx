@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Container, Grid } from 'semantic-ui-react';
+import { Container, Grid, Button } from 'semantic-ui-react';
 import StripeCheckout from 'react-stripe-checkout';
 
 const ClosedAuction = ({ auction, history }) => {
@@ -45,14 +45,21 @@ const ClosedAuction = ({ auction, history }) => {
   let message;
   if (auction.won) {
     message = (
-      <StripeCheckout
-        token={(token) => { onToken(token, auction); }}
-        stripeKey="pk_test_OPzkCFtDFdvkqzZP2RCkuNDA"
-      />
+      <p>
+        <StripeCheckout
+          token={(token) => { onToken(token, auction); }}
+          stripeKey="pk_test_OPzkCFtDFdvkqzZP2RCkuNDA"
+        />
+      </p>
     );
   } else {
-    message = <button>More by this Artist</button>;
+    message = <Button color="green">More by this Artist</Button>;
   }
+
+  const _formatMoney = (money) => {
+    return money.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  };
+
   return (
     <Grid.Column>
       <div
@@ -60,12 +67,13 @@ const ClosedAuction = ({ auction, history }) => {
         style={{backgroundImage: `url(${auction.image_url})`}}
         onClick={() => handleClick(auction.id)}
       />
-      <Container>
-        <h4 className>{auction.art_name}</h4>
-        <p>{auction.first_name} {auction.last_name} ({auction.age})</p>
-        <p>Closing Price ($USD): {auction.current_bid}</p>
+      <div className="stripeButtonContainer">
+        <h4 className="artName">{auction.art_name}</h4>
+        <span>{auction.first_name} {auction.last_name} ({auction.age})</span>
+        <br />
+        <span>Closing Price: ${_formatMoney(+auction.current_bid)}</span>
         {message}
-      </Container>
+      </div>
     </Grid.Column>
   );
 };
