@@ -41,17 +41,24 @@ const ClosedAuction = ({ auction, history }) => {
   const handleClick = (id) => {
     history.push(`/auction/${id}`);
   };
+  const artistClick = (artistId) => {
+    history.push(`/artist/${artistId}`);
+  };
 
   let message;
   if (auction.won) {
-    message = (
-      <StripeCheckout
-        token={(token) => { onToken(token, auction); }}
-        stripeKey="pk_test_OPzkCFtDFdvkqzZP2RCkuNDA"
-      />
-    );
+    if (auction.payment_status === 'unpaid') {
+      message = (
+        <StripeCheckout
+          token={(token) => { onToken(token, auction); }}
+          stripeKey="pk_test_OPzkCFtDFdvkqzZP2RCkuNDA"
+        />
+      );
+    } else {
+      message = <button onClick={() => artistClick(auction.owner_id)}>More by this Artist</button>;
+    }
   } else {
-    message = <button>More by this Artist</button>;
+    message = <button onClick={() => artistClick(auction.owner_id)}>More by this Artist</button>;
   }
   return (
     <Grid.Column>
