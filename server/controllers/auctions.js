@@ -7,7 +7,6 @@ const serverErr = { ERR: { status: 500, message: 'Something went wrong. So Sorry
 
 module.exports = function(io) {
   router.get('/', (req, res) => {
-    console.log(req.cookies);
     const limit = req.query.limit || 20;
     const status = req.query.status || '>';
     const time = new Moment().format('YYYY-MM-DD HH:mm:ss');

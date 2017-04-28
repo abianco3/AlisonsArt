@@ -24,7 +24,7 @@ const MessageWrapper = ({ data, isFetching, hasErrored, error, Component }) => {
         <Icon name="circle notched" loading />
         <Message.Content>
           <Message.Header>Just a second!</Message.Header>
-          Artists are on the way.
+          Content is on the way.
         </Message.Content>
       </Message>
     );
