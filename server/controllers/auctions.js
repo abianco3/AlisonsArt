@@ -76,15 +76,16 @@ module.exports = function(io) {
     // console.log(io.sockets.sockets, 'listof sockets in auctions handler');
     model.getAuction(bid.auction_id)
     .then((auctionResult) => {
-
-      if (!(auctionResult.current_bid === auctionResult.buyout_price)) {
+      // console.log(auctionResult, 'OOOKY');
+      if (!(auctionResult[0].current_bid === auctionResult[0].buyout_price)) {
         model.createBid(bid)
         .then((bid) => {
           const update = {};
           update.auction_id = req.params.auctionId;
           update.bid = bid;
-          let time = new Moment().format('YYYY-MM-DD HH:mm:ss');
-          return model.updateAuction(update, time)
+          update.buyout_price = auctionResult[0].buyout_price;
+          update.time = new Moment().format('YYYY-MM-DD HH:mm:ss');
+          return model.updateAuction(update)
           .then((bid) => {
             // new bid beats current highest bid
             // console.log(bid, bid.owner_id, 'LOOK HERE');

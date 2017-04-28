@@ -95,7 +95,7 @@ class Notification extends React.Component {
   }
 
   render() {
-    const { notification } = this.props;
+    let { notification } = this.props;
     let newNotification = notification.notifications;
     let filteredNoties;
     if (this.state.activeItem === 'All') {
@@ -110,7 +110,11 @@ class Notification extends React.Component {
       });
     } else if (this.state.activeItem === 'Unread') {
       filteredNoties = newNotification.filter((noty) => {
-        return noty.read === false;
+        if (noty.hasOwnProperty('read')) {
+          return noty.read === false;
+        } else {
+          return true;
+        }
       });
     } else {
       filteredNoties = newNotification.filter((noty) => {
