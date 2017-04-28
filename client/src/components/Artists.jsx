@@ -97,7 +97,7 @@ class Artists extends React.Component {
         <Grid>
           {artists.map(artist => (
             <Grid.Row columns={2}>
-              <Grid.Column width={6} key={artist.id}>
+              <Grid.Column width={4} key={artist.id}>
                 <Image
                   className="imageLink"
                   verticalAlign="top"
@@ -106,8 +106,8 @@ class Artists extends React.Component {
                   onClick={() => this.goToArtist(artist.id)} 
                 />
               </Grid.Column>
-              <Grid.Column width={10}>
-                <h4 className="imageHeader">
+              <Grid.Column width={12}>
+                <h4 className="artistName">
                   {artist.first_name} {artist.last_name}
                 </h4>
                 <p className="artworkDescription">{artist.profile}</p>

@@ -46,7 +46,9 @@ a {
 .teamphoto {
   width: 350px;
   height: 340px;
+  /*background-position: right top;*/
   background-position: 20% 25%;
+  float: right;
 }
 .profile {
   width: 180px;
