@@ -1,6 +1,7 @@
 import React from 'react';
-import { Container, Image, Grid, Button, Form, Input } from 'semantic-ui-react';
+import { Container, Image, Grid, Button, Form, Input, Message } from 'semantic-ui-react';
 import Moment from 'moment';
+import Messages from './Messages.jsx';
 
 let inputNode = null;
 
@@ -54,7 +55,7 @@ const AuctionDetail = ({auction, bid, setBid, handleClick, user, handleSave, han
               </strong>
               <span className="ui input">
                 <input onChange={e => {
-                  if(isNaN(e.target.value)) {
+                  if (isNaN(e.target.value)) {
                     e.target.value = '';
                   } else {
                     setBid(e.target.value);
@@ -66,9 +67,10 @@ const AuctionDetail = ({auction, bid, setBid, handleClick, user, handleSave, han
             </span>
             <Button className="ui right floated" color="green" onClick={() => {
               handleClick(auction.id, avail, buyout)
-              inputNode.value=''
+              inputNode.value = '';
             }}>Submit</Button>
           </Form.Group>
+          <Messages />
         </Container>
       </Grid.Column>
     </Grid>
@@ -76,3 +78,4 @@ const AuctionDetail = ({auction, bid, setBid, handleClick, user, handleSave, han
 };
 
 export default AuctionDetail;
+
