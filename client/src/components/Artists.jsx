@@ -84,7 +84,7 @@ class Artists extends React.Component {
       return (
         <Container>
           <Message
-            header="There don't seem to be any artists on ArtPoint. Hmmm... Will you be the first?"
+            header="There doesn't seem to be any artists on ArtPoint. Hmmm... Will you be the first?"
             content="Signing up is quick and easy, click here to get started."
           />
           <Button onClick={() => this.createAccount()}>Make a Listing!</Button>
