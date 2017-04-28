@@ -21,7 +21,7 @@ const _formatMoney = (money) => {
   return money.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
 };
 
-const MessageWrapper = ({ data, isFetching, hasErrored, error, Component }) => {
+const MessageWrapper = ({ data, isFetching, hasErrored, error, Component, history }) => {
   if (isFetching) {
     return (
       <Message icon>

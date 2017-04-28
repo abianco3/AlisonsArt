@@ -2,7 +2,8 @@ const initialState = {
   bid: 0,
   sendingBid: false,
   error: null,
-  bidErrored: false
+  bidErrored: false,
+  success: false
 };
 
 
@@ -24,6 +25,16 @@ const bidReducer = (state = initialState, action) => {
         sendingBid: false,
         error: action.error,
         bidErrored: true
+      };
+    case 'BID_SUCCESS':
+      return {
+        ...state,
+        success: true,
+        sendingBid: false
+      };
+    case 'RESET':
+      return {
+        initialState
       };
     default:
       return state;
