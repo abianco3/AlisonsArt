@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import ReactDOM from 'react-dom';
-import { Container, Image, Divider, Grid, Button, Segment, List } from 'semantic-ui-react';
+import { Container, Image, Divider, Grid, Button, Segment, List, Message } from 'semantic-ui-react';
 //this imageGallery is causing a warning on React.createClass will be removed in v16
 import * as ArtistAction from '../actions/artistActionCreator.jsx';
 import ArtistAuctions from './ArtistProfile/ArtistAuctions.jsx';
@@ -179,7 +179,8 @@ class Artist extends Component {
         if (!fetchedArtist.profile) {
           return (
             <div>
-              Sorry, we don't have a profile page for this artist!
+              <Message 
+                content="Sorry, we don't have a profile page for this artist!"/>
             </div>
           );
         }

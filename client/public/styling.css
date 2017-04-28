@@ -111,6 +111,19 @@ a {
   padding-left: 14px;
 }
 
+/*.auctionImage {
+  width: 700px;
+  height: 600px;
+  max-width: 100%;
+  max-height: 100%;
+  background-repeat: no-repeat;
+  align-items: center;
+}*/
+
+.auctionDescription {
+  align-items: left;
+}
+
 .imageHeader {
   margin-bottom: 5px;
 }

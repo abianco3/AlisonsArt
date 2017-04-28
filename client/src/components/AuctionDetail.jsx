@@ -25,10 +25,10 @@ const AuctionDetail = ({auction, bid, setBid, handleClick, user, handleSave, han
   let avail = current ? Math.min(current + interval, buyout) : start;
   return (
     <Grid>
-      <Grid.Column width={11}>
-        <Image fluid src={auction.artwork.image_url} />
+      <Grid.Column width={8}>
+        <Image src={auction.artwork.image_url} />
       </Grid.Column>
-      <Grid.Column width={5}>
+      <Grid.Column width={8}>
         <Container>
           <h2>{auction.artwork.art_name}</h2>
           {user.username && !flag ? <Button circular icon="heart" content="save" color="green" onClick={() =>{
@@ -63,11 +63,11 @@ const AuctionDetail = ({auction, bid, setBid, handleClick, user, handleSave, han
                   inputNode = node
                 }} />
               </span>
+                <Button color="green" onClick={() => {
+                  handleClick(auction.id, avail, buyout)
+                  inputNode.value=''
+                }}>Submit</Button>
             </span>
-            <Button className="ui right floated" color="green" onClick={() => {
-              handleClick(auction.id, avail, buyout)
-              inputNode.value=''
-            }}>Submit</Button>
           </Form.Group>
         </Container>
       </Grid.Column>
