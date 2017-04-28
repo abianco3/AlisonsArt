@@ -17,7 +17,7 @@ const onImageClick = (event, history) => {
   clickArt(lastCharacter, history);
 };
 
-const MessageWrapper = ({ data, isFetching, hasErrored, error, Component }) => {
+const MessageWrapper = ({ data, isFetching, hasErrored, error, Component, history }) => {
   if (isFetching) {
     return (
       <Message icon>
