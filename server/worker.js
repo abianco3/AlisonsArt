@@ -3,15 +3,6 @@ const cron = require('node-cron');
 const model = require('./database/queries');
 const Moment = require('moment');
 
-
-// function func(input) {
-//   process.send('Hello ' + input);
-// }
-
-// process.on('message', function(m) {
-//   func(m);
-// });
-
 let time;
 let prevJobTime = new Moment().subtract(5, 'years').format('YYYY-MM-DD HH:mm:ss');
 cron.schedule('*/30 * * * * *', function() {
@@ -30,6 +21,7 @@ cron.schedule('*/30 * * * * *', function() {
       const insertClosed = model.workerInsertClosed(results).then(() => {console.log('inserted into closed_auctions table')});
       // for each auction get all the bidders unique (each bidder shows up once);
       return Promise.all((results.map((auction, index) => {
+        
         return model.getAuctionBidsDistinct(auction.auction_id)
         .then((bidResults) => {
           
