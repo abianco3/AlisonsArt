@@ -72,6 +72,7 @@ const ClosedAuction = ({ auction, history }) => {
         <span>{auction.first_name} {auction.last_name} ({auction.age})</span>
         <br />
         <span>Closing Price: ${_formatMoney(+auction.current_bid)}</span>
+        <br />
         {message}
       </div>
     </Grid.Column>

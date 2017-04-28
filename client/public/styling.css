@@ -46,7 +46,6 @@ a {
 .teamphoto {
   width: 350px;
   height: 340px;
-  /*background-position: right top;*/
   background-position: 20% 25%;
   float: right;
 }
@@ -101,10 +100,6 @@ a {
   position: relative;
   overflow: hidden;
 }
-
-/*.auctionsFrame {
-  height: 380px;
-}*/
 
 .auctionType {
   margin-top: 10px;

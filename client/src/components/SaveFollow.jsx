@@ -64,7 +64,7 @@ class SaveFollow extends Component {
               header="You do not have any saves yet"
               content="Click below to check out fantastic artworks!"
             /> 
-            <Button onClick={() => this.goToAuctions()}>
+            <Button color="green" onClick={() => this.goToAuctions()}>
               Go to Auctions
             </Button>
           </Container>: null}
@@ -86,7 +86,7 @@ class SaveFollow extends Component {
               header="You are not following any artists yet"
               content="Click below to check out some of our brilliant artists!"
             /> 
-            <Button onClick={() => this.goToArtists()}>
+            <Button color="green" onClick={() => this.goToArtists()}>
               Go to Artists
             </Button>
           </Container> : null}

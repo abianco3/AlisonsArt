@@ -24,14 +24,14 @@ const OpenAuction = ({auction, history}) => {
         style={{backgroundImage: `url(${auction.image_url})`}}
         onClick={() => handleClick(auction.id)}
       />
-      <Container>
+      <div className="stripeButtonContainer">
         <h4 className="artName">{auction.art_name}</h4>
         <span>{auction.first_name} {auction.last_name} ({auction.age})</span>
         <br />
         <span>Current Bid: ${_formatMoney(+auction.current_bid)}</span>
         <br />
         {message}
-      </Container>
+      </div>
     </Grid.Column>
   );
 };
