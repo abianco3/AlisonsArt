@@ -51,7 +51,7 @@ module.exports = {
           auction.closed = false;
           return t.one('SELECT bidder_id FROM bids where id = $1', [auction.current_bid_id])
           .then((bid) => {
-            auction.isHighestBidder = bid.id === userId.toString();
+            auction.isHighestBidder = bid.bidder_id === userId.toString();
             return auction;
           });
         });

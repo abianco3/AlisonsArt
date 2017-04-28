@@ -164,7 +164,7 @@ class Connect extends React.Component {
             />
             <Form.Input 
               label="Twitter Link"
-              name="twitter"
+              name="twitter_link"
               value={this.state.twitter_link}
               onChange={this.handleChange}
             />
@@ -172,7 +172,7 @@ class Connect extends React.Component {
               label="Instagram Link"
               name="inst_link"
               value={this.state.inst_link}
-              onChange={this.state.handleChange}
+              onChange={this.handleChange}
             />
             <Button onClick={(e) => this.handleSubmit(e)}>Create Your Artist Profile!</Button>
           </Form>
