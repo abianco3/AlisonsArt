@@ -5,11 +5,7 @@ import Messages from './Messages.jsx';
 
 let inputNode = null;
 
-<<<<<<< 4d90d3b9457a5a20427c837dddb5af0aa6866733
 const AuctionDetail = ({auction, bid, setBid, handleClick, user, handleSave, handleUnsave, flag, clickArtist}) => {
-=======
-const AuctionDetail = ({auction, setBid, handleClick, user, handleSave, handleUnsave, flag, clickArtist }) => {
->>>>>>> use messages instead of alerts when bidding
 
   let endTime = new Moment(auction.end_date).format('MMMM Do, YYYY, h:mm:ss a');
   let current = +auction.current_bid;
