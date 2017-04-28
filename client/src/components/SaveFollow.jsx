@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Divider, Container, Grid, Image } from 'semantic-ui-react';
+import { Divider, Container, Grid, Message, Button } from 'semantic-ui-react';
 import { connect } from 'react-redux';
 import * as UserActions from '../actions/userActionCreator.jsx';
 import ArtistAuctions from './ArtistProfile/ArtistAuctions.jsx';
@@ -44,13 +44,30 @@ class SaveFollow extends Component {
     this.props.history.push(`/artist/${artistId}`);
   }
 
+  goToAuctions() {
+    this.props.history.push('/auctions');
+  }
+
+  goToArtists() {
+    this.props.history.push('/artists');
+  }
+
   render() {
     let { savedAuctions, followingArtists, dispatch, history } = this.props;
     return (
       <Container>
         <h3>Your saved auctions:</h3>
         <Grid>
-        {savedAuctions.length === 0 ? <div>You don't have any saves yet</div> : null}
+        {savedAuctions.length === 0 ? 
+          <Container>
+            <Message
+              header="You do not have any saves yet"
+              content="Click below to check out fantastic artworks!"
+            /> 
+            <Button onClick={() => this.goToAuctions()}>
+              Go to Auctions
+            </Button>
+          </Container>: null}
           <Grid.Row columns={3}>
           {savedAuctions.map(auction => {
             return (
@@ -64,7 +81,15 @@ class SaveFollow extends Component {
         <div>
           <h3>Your following artists:</h3>
           <Grid>
-          {followingArtists.length === 0 ? <div>You are not following any artists yet</div> : null}
+          {followingArtists.length === 0 ? <Container>
+            <Message
+              header="You are not following any artists yet"
+              content="Click below to check out some of our brilliant artists!"
+            /> 
+            <Button onClick={() => this.goToArtists()}>
+              Go to Artists
+            </Button>
+          </Container> : null}
             <Grid.Row columns={3}>
             {followingArtists.map(artist => {
               return (

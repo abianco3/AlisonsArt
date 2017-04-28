@@ -113,7 +113,7 @@ class UserAuctions extends Component {
             ) :
             <Container>
               <Message
-                header="You have won any auctions... Yet"
+                header="You have not won any auctions... Yet"
                 content="You dream piece is waiting for you. Click below to find it."
               />
               <Button onClick={() => this.goToAuctions()}>Go To Auctions</Button>
