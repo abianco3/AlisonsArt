@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Container, Image } from 'semantic-ui-react';
+import { Container, Image, Message, Icon } from 'semantic-ui-react';
 import * as Auctions from '../actions/auctionActionCreator.jsx';
 import * as UserActions from '../actions/userActionCreator.jsx';
 import { connect } from 'react-redux';
@@ -126,6 +126,7 @@ class Auction extends Component {
       } else if(bid.bid > buyout) {
         alert('How about bidding for the buyout amount?');
       } else {
+        dispatch(Bids.toggleSend());
         fetch(`/auctions/${auctionId}/bids`, {
           method: 'POST',
           headers: new Headers({
@@ -138,15 +139,18 @@ class Auction extends Component {
         })
         .then(response => {
           if (!response.ok) {
-            throw Error(response.json());
+            const error = new Error(response.statusText);
+            error.status = response.status;
+            throw error;
           }
           return response.json();
         })
         .then(data => {
-          bid.current_bid = data.current_bid;
-          bid.current_bid_id = data.current_bid_id;
-          dispatch(Auctions.updateBid(bid));
-          alert(`You have successfully bid $${data.current_bid}`);
+          const sentBid = {};
+          sentBid.current_bid = data.current_bid;
+          sentBid.current_bid_id = data.current_bid_id;
+          dispatch(Auctions.updateBid(sentBid));
+          dispatch(Bids.success());
         })
         .catch(err => {
           dispatch(Bids.error(err));
@@ -167,7 +171,13 @@ class Auction extends Component {
     const { bid, user } = this.props;
     if (Object.keys(auction).length === 0) {
       return (
-        <p>loading~~~</p>
+        <Message icon>
+          <Icon name="circle notched" loading />
+          <Message.Content>
+            <Message.Header>Just a second!</Message.Header>
+            Content is on the way.
+          </Message.Content>
+        </Message>
       );
     } else {
       const end = new Moment(auction.end_date);

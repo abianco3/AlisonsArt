@@ -676,7 +676,7 @@ const auctions = [
 		owner_id: 2,
 		artwork_id: 6,
 		start_date: '2017-04-09 14:27:07',
-		end_date: '2017-05-05 14:27:07',
+		end_date: '2018-05-05 14:27:07',
 		start_price: 13000,
 		buyout_price: 20000,
 		current_bid_id: null,

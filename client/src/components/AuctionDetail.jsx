@@ -1,6 +1,7 @@
 import React from 'react';
 import { Container, Image, Grid, Button, Form, Input } from 'semantic-ui-react';
 import Moment from 'moment';
+import Messages from './Messages.jsx';
 
 let inputNode = null;
 
@@ -69,6 +70,7 @@ const AuctionDetail = ({auction, bid, setBid, handleClick, user, handleSave, han
                 }}>Submit</Button>
             </span>
           </Form.Group>
+          <Messages />
         </Container>
       </Grid.Column>
     </Grid>

@@ -25,6 +25,16 @@ const bidReducer = (state = initialState, action) => {
         error: action.error,
         bidErrored: true
       };
+    case 'BID_SUCCESS':
+      return {
+        ...state,
+        success: true,
+        sendingBid: false
+      };
+    case 'RESET':
+      return {
+        initialState
+      };
     default:
       return state;
   }
